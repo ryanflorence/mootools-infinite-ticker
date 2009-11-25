@@ -3,6 +3,10 @@ Class: InfiniteTicker {#InfiniteTicker}
 
 <span class="d">Scrolls an element with overflow infinitely by moving elements scrolled out of view back into the other side of the element to be scrolled back in to view later.</span>
 
+### Demo
+
+<iframe src="http://mooshell.net/rpflo/tAwde/embedded/?tabs=result,js,html,css" style="width: 100%; height:340px"></iframe>
+
 ### Extends:
 
 [Fx.Scroll][2]
@@ -30,13 +34,15 @@ InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
 
 ### Options:
 
-* delay - (`number`: defaults to 3000) The time between scrolls.
+* delay - (_number_: defaults to 3000) The time between scrolls.
+* direction - (_string_: defaults to `up`) The direction to scroll.  Accepts `up` or `down`.
 
 ### Example:
 
     var myTicker = new InfiniteTicker('ticker',{
     	duration: 1000,
-    	transition: 'quad:out'
+    	transition: 'quad:out',
+    	direction: 'down'
     }).startLoop();
 
 
@@ -50,5 +56,5 @@ InfiniteTicker Method: toNext {#InfiniteTicker:toNext}
     myTicker.toNext();
 
 
-  [1]: /rpflo/Loop/ "Loop"
+  [1]: http://moodocs.net/rpflo/mootools-rpflo/Loop "Loop"
   [2]: http://mootools.net/docs/more/Fx/Fx.Scroll "Fx.Scroll"

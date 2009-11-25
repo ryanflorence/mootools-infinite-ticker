@@ -52,7 +52,7 @@ var InfiniteTicker = new Class({
 			case 'down':
 				this.element.getLast().dispose().inject(this.element, 'top');
 			break;
-		}
+		};
 		this.set(0,this.scrollHeight - this.scrollOffset)
 	}
 	
