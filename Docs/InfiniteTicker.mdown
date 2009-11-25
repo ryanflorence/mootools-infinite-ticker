@@ -1,0 +1,54 @@
+Class: InfiniteTicker {#InfiniteTicker}
+=======================================
+
+<span class="d">Scrolls an element with overflow infinitely by moving elements scrolled out of view back into the other side of the element to be scrolled back in to view later.</span>
+
+### Extends:
+
+[Fx.Scroll][2]
+
+### Implements:
+
+[Loop][loop]: view to see inherited methods.
+
+### Notes:
+
+* Just like any [`Fx.Scroll`][2] effect, your element must have an overflow.
+* Inherits all of [`Loop`s][1] methods to start and stop.
+
+InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
+-----------------------------------------------------------------
+
+### Syntax:
+
+	var myInfiniteTicker = new InfiniteTicker(element, options);
+
+### Arguments:
+
+1. element - (`element`) A string referencing the id of an element, or an element object.
+2. options - (`object`) The [`Fx.Scroll`][2] options object plus the following:
+
+### Options:
+
+* delay - (`number`: defaults to 3000) The time between scrolls.
+
+### Example:
+
+    var myTicker = new InfiniteTicker('ticker',{
+    	duration: 1000,
+    	transition: 'quad:out'
+    }).startLoop();
+
+
+InfiniteTicker Method: toNext {#InfiniteTicker:toNext}
+-------------------------------------------------------
+
+<span class="d">Scroll the container one element forward.</span>
+
+### Syntax:
+
+    myTicker.toNext();
+
+
+  [1]: /rpflo/Loop/ "Loop"
+  [2]: http://mootools.net/docs/more/Fx/Fx.Scroll "Fx.Scroll"
