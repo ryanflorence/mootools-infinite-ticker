@@ -1,7 +1,7 @@
 Class: InfiniteTicker {#InfiniteTicker}
 =======================================
 
-<span class="d">Scrolls an element with overflow infinitely by moving elements scrolled out of view back into the other side of the element to be scrolled back in to view later.</span>
+<big>Scrolls an element with overflow infinitely by moving elements scrolled out of view back into the other side of the element to be scrolled back in to view later.</big>
 
 ### Demo
 
@@ -49,7 +49,7 @@ InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
 InfiniteTicker Method: toNext {#InfiniteTicker:toNext}
 -------------------------------------------------------
 
-<span class="d">Scroll the container one element forward.</span>
+<big>Scroll the container one element forward.</big>
 
 ### Syntax:
 
