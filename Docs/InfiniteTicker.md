@@ -5,7 +5,7 @@ Class: InfiniteTicker {#InfiniteTicker}
 
 ### Demo
 
-<iframe src="http://mooshell.net/rpflo/tAwde/embedded/?tabs=result,js,html,css" style="width: 100%; height:340px"></iframe>
+<iframe src="http://mooshell.net/rpflo/K2R3W/embedded/?tabs=result,js,html,css" style="width: 100%; height:560px"></iframe>
 
 ### Extends:
 
@@ -35,7 +35,7 @@ InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
 ### Options:
 
 * delay - (_number_: defaults to 3000) The time between scrolls.
-* direction - (_string_: defaults to `up`) The direction to scroll.  Accepts `up` or `down`.
+* direction - (_string_: defaults to `up`) The direction to scroll.  Accepts `up`, `down`, `left`, or `right`.  It actually scrolls the element the opposite direction.
 
 ### Example:
 
@@ -43,7 +43,7 @@ InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
     	duration: 1000,
     	transition: 'quad:out',
     	direction: 'down'
-    }).startLoop();
+    });
 
 
 InfiniteTicker Method: toNext {#InfiniteTicker:toNext}

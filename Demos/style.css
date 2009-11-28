@@ -35,20 +35,28 @@ div.actions {
 	clear: both;
 	padding-top: 10px;
 }
-/* @end */
 
-div.outer {
-	background: #000;
-	color: #fff;
-	padding: 10px;
-	width: 200px;
-	float: left;
-	margin-right: 10px;
+.red {
+	background: #e40053;
 }
+
+.blue {
+	background: #0094d5;
+}
+
+.green {
+	background: #43aa38;
+}
+
+
+/* @end */
 
 div.ticker {
 	overflow: hidden;
 	height: 200px;
+	width: 207px;
+	float: left;
+	margin: 10px;
 }
 
 div.ticker p {
@@ -57,8 +65,23 @@ div.ticker p {
 	margin: 0px;
 	font-size: 50px;
 	line-height: 100px;
-	background: #585858;
+	color: #fff;
 	margin: 0px;
-	border: solid 1px #333;
 	text-align: center;
+}
+
+div.horizontal {
+	clear: both;
+	float: none;
+	width: 435px;
+	height: 100px;
+}
+
+div.horizontal div.inner {
+	width: 870px;
+}
+
+div.horizontal div.inner p {
+	float: left;
+	width: 145px;
 }

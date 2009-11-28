@@ -9,8 +9,8 @@
 		<link rel="stylesheet" href="../../source/master.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<script type="text/javascript" src="mootools-1.2.4-core-nc.js"></script>
-	<script type="text/javascript" src="../Source/Fx.Scroll.js"></script>
-	<script type="text/javascript" src="../Source/Loop.js"></script>
+	<script type="text/javascript" src="Fx.Scroll.js"></script>
+	<script type="text/javascript" src="Loop.js"></script>
 	<script type="text/javascript" src="../Source/InfiniteTicker.js"></script>
 	<script type="text/javascript" src="demo.js"></script>
 </head>
@@ -19,27 +19,44 @@
 	
 	<h1>Infinite Ticker Test / Demo</h1>
 	
-	<div class="outer">
-		<div class="ticker" id="ticker_up">
-			<p>1</p>
-			<p>2</p>
-			<p>3</p>
-			<p>4</p>
-			<p>5</p>
-			<p>6</p>
-			<p>7</p>
-		</div>
+	<div class="ticker" id="ticker_up">
+		<p class="red">1</p>
+		<p class="green">2</p>
+		<p class="blue">3</p>
+		<p class="red">4</p>
+		<p class="green">5</p>
+		<p class="blue">6</p>
 	</div>
 
-	<div class="outer">
-		<div class="ticker" id="ticker_down">
-			<p>1</p>
-			<p>2</p>
-			<p>3</p>
-			<p>4</p>
-			<p>5</p>
-			<p>6</p>
-			<p>7</p>
+	<div class="ticker" id="ticker_down">
+		<p class="red">1</p>
+		<p class="green">2</p>
+		<p class="blue">3</p>
+		<p class="red">4</p>
+		<p class="green">5</p>
+		<p class="blue">6</p>
+	</div>
+
+	
+	<div class="ticker horizontal" id="ticker_right">
+		<div class="inner">
+			<p class="red">1</p>
+			<p class="green">2</p>
+			<p class="blue">3</p>
+			<p class="red">4</p>
+			<p class="green">5</p>
+			<p class="blue">6</p>
+		</div>
+	</div>
+	
+	<div class="ticker horizontal" id="ticker_left">
+		<div class="inner">
+			<p class="red">1</p>
+			<p class="green">2</p>
+			<p class="blue">3</p>
+			<p class="red">4</p>
+			<p class="green">5</p>
+			<p class="blue">6</p>
 		</div>
 	</div>
 	
@@ -47,7 +64,8 @@
 	<div class="actions">
 		<button id="start">start</button>
 		<button id="stop">stop</button>
-		<button id="next">next</button>
+		<button id="next">next</button> &nbsp; &nbsp;
+		<button id="show_scrollbars">show scrollbars</button>
 	</div>
 
 	<p>
