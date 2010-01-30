@@ -12,16 +12,13 @@ authors: Ryan Florence <http://ryanflorence.com>
 docs: http://moodocs.net/rpflo/mootools-rpflo/InfiniteTicker
 
 requires:
-- /Fx.Scroll
+- more/1.2.4.3: [Fx.Scroll]
 - /Loop
-- /Element
 
 provides: [InfiniteTicker]
 
 ...
 */
-
-
 
 var InfiniteTicker = new Class({
 	
@@ -29,15 +26,34 @@ var InfiniteTicker = new Class({
 	Implements: Loop,
 	
 		options: {
-			delay: 4000,
 			direction: 'down',
-			childSelector: 'p'
+			childSelector: false,
+			delay: 4000,
+			autostart: true
 		},
 	
 	initialize: function(element, options){
-		this.parent(element,options);
-		this.setLoop(this.toNext, this.options.delay);
+		this.parent(element, options);
 		this.cacheElements();
+		this.moveElement();	
+		
+		this.setLoop(this.progress, this.options.delay);
+		this.checkAutoStart();
+		
+		this.toNext = this.progress; // bc
+		this.addEvent('onComplete',this.moveElement.bind(this));
+	},
+		
+	cacheElements: function(){
+		var cs = this.options.childSelector;
+		if(cs){
+			els = this.element.getElements(cs);
+		} else if (this.options.direction == 'left' || this.options.direction == 'right'){
+			els = this.element.getElements(':first-child > *');
+		} else {
+			els = this.element.getChildren();
+		}
+		this.elements = els;
 		this.elementsSize = this.elements[0].getSize();
 		this.scrollSize = this.element.getScrollSize();
 		this.elementStyles = {
@@ -48,20 +64,27 @@ var InfiniteTicker = new Class({
 			y: ((this.elementStyles.height / this.elementsSize.y) + 1) * this.elementsSize.y,
 			x: ((this.elementStyles.x / this.elementsSize.x) + 1) * this.elementsSize.x
 		};
-		this.moveElement(this.options.direction);	
-		this.addEvent('onComplete',function(){
-			this.moveElement();
-		}.bind(this));
-		this.startLoop();
-	},
-	
-	cacheElements: function(){
-		this.elements = this.element.getElements(this.options.childSelector);
 		return this;
 	},
 	
-	toNext: function(){
-		this.checkLooping();
+	checkAutoStart: function(){
+		if(this.options.autostart) this.startLoop();
+		return this;
+	},
+		
+	reverse: function(){
+		var r = {
+		    up: 'down',
+		    down: 'up',
+		    right: 'left',
+		    left: 'right'
+		};
+		this.options.direction = r[this.options.direction];
+		this.moveElement();
+		return this;
+	},
+	
+	progress: function(){
 		var scroll = this.element.getScroll();
 		switch(this.options.direction){
 			case 'down': this.start(0, scroll.y - this.elementsSize.y); break;
@@ -71,12 +94,7 @@ var InfiniteTicker = new Class({
 		};
 	},
 	
-	checkLooping: function(){
-		if(this.isLooping) this.stopLoop().startLoop();
-		return this;
-	},
-	
-	moveElement: function(target){
+	moveElement: function(){
 		this.cacheElements();
 		switch(this.options.direction){
 			case 'down': 

@@ -1,24 +1,25 @@
 Class: InfiniteTicker {#InfiniteTicker}
 =======================================
 
-<big>Scrolls an element with overflow infinitely by moving elements scrolled out of view back into the other side of the element to be scrolled back in to view later.</big>
+<big>Scrolls an element with overflow infinitely by moving elements scrolled out of view back onto the other side of the element, to be scrolled back in to view later.</big>
 
 ### Demo
 
-<iframe src="http://mooshell.net/rpflo/K2R3W/embedded/?tabs=result,js,html,css" style="width: 100%; height:560px"></iframe>
+<iframe src="http://mootools.net/shell/rpflo/qFu99/embedded/result,js,html,css" style="width: 100%; height:430px"></iframe>
 
 ### Extends:
 
-[Fx.Scroll][2]
+[Fx.Scroll][Fx.Scroll]
 
 ### Implements:
 
-[Loop][loop]: view to see inherited methods.
+[Loop][Loop]: view to see inherited methods.
 
 ### Notes:
 
-* Just like any [`Fx.Scroll`][2] effect, your element must have an overflow.
-* Inherits all of [`Loop`s][1] methods to start and stop.
+* Just like any [`Fx.Scroll`][Fx.Scroll] effect, your element must have an overflow.
+* Inherits all of [`Loop`s][Loop] methods to start and stop.
+
 
 InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
 -----------------------------------------------------------------
@@ -30,12 +31,16 @@ InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
 ### Arguments:
 
 1. element - (`element`) A string referencing the id of an element, or an element object.
-2. options - (`object`) The [`Fx.Scroll`][2] options object plus the following:
+2. options - (`object`) The [`Fx.Scroll`][Fx.Scroll] options object plus the following:
 
 ### Options:
 
-* delay - (_number_: defaults to 3000) The time between scrolls.
-* direction - (_string_: defaults to `up`) The direction to scroll.  Accepts `up`, `down`, `left`, or `right`.  It actually scrolls the element the opposite direction.
+* delay - (_number_: defaults to 4000) The time between scrolls.
+* direction - (_string_: defaults to `up`) The direction to scroll.  Accepts `up`, `down`, `left`, or `right`.  (It actually scrolls the element the opposite direction.)
+* autostart - (_boolean_: deafults to `true`) If true, will start progressing.
+* childSelector - (_string_: defaults to `false`) A CSS selector to select the elements that determine the amount of scrolling per progression.
+  * When left `false`, the children elements will be elected for `up` and `down`, and the grandchildren will be selected for `left` and `right` as you typically need an outer element to create a horizontal overflow.
+  * When set, it will get the matched elements.
 
 ### Example:
 
@@ -46,15 +51,32 @@ InfiniteTicker Method: constructor {#InfiniteTicker:constructor}
     });
 
 
-InfiniteTicker Method: toNext {#InfiniteTicker:toNext}
--------------------------------------------------------
+InfiniteTicker Method: progress {#InfiniteTicker:progress}
+-----------------------------------------------------------
 
-<big>Scroll the container one element forward.</big>
+<big>Progresses the effect one increment</big>
 
 ### Syntax:
 
-    myTicker.toNext();
+    myTicker.progress();
+    myTicker.toNext(); // backwards compatibility
 
+### Returns
 
-  [1]: http://moodocs.net/rpflo/mootools-rpflo/Loop "Loop"
-  [2]: http://mootools.net/docs/more/Fx/Fx.Scroll "Fx.Scroll"
+This InfiniteTicker instance
+
+InfiniteTicker Method: reverse {#InfiniteTicker:reverse}
+---------------------------------------------------------
+
+<big>Not very easy on the eyes, but allows you to reverse the direction of the effect. Might make this prettier in the future but it works.</big>
+
+### Syntax:
+
+    myTicker.reverse();
+
+### Returns:
+
+This InfiniteTicker instance
+
+[Fx.Scroll]:http://mootools.net/docs/more/Fx/Fx.Scroll
+[Loop]:http://mootools.net/forge/p/loop

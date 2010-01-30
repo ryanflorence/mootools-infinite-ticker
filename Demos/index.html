@@ -6,9 +6,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<title>InfiniteTicker Test/Demo</title>
-		<link rel="stylesheet" href="../../source/master.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 	<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-	<script type="text/javascript" src="mootools-1.2.4-core-nc.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools.js"></script>
 	<script type="text/javascript" src="Fx.Scroll.js"></script>
 	<script type="text/javascript" src="Loop.js"></script>
 	<script type="text/javascript" src="../Source/InfiniteTicker.js"></script>
@@ -19,14 +18,14 @@
 	
 	<h1>Infinite Ticker Test / Demo</h1>
 	
-	<div class="ticker" id="ticker_up">
-		<p class="red">1</p>
-		<p class="green">2</p>
-		<p class="blue">3</p>
-		<p class="red">4</p>
-		<p class="green">5</p>
-		<p class="blue">6</p>
-	</div>
+	<ul class="ticker" id="ticker_up">
+		<li class="red">1</li>
+		<li class="green">2</li>
+		<li class="blue">3</li>
+		<li class="red">4</li>
+		<li class="green">5</li>
+		<li class="blue">6</li>
+	</ul>
 
 	<div class="ticker" id="ticker_down">
 		<p class="red">1</p>
@@ -60,10 +59,17 @@
 		</div>
 	</div>
 	
+	<h2>Events (inherited from Fx)</h2>
+	<p>
+		<span id="onStart">onStart</span>
+		<span id="onComplete">onComplete</span>
+	</p>
 	
+	<h2>Methods</h2>
 	<div class="actions">
 		<button id="start">start</button>
-		<button id="stop">stop</button>
+		<button id="stop">stop</button> &nbsp; &nbsp;
+		<button id="reverse">reverse</button>
 		<button id="next">next</button> &nbsp; &nbsp;
 		<button id="show_scrollbars">show scrollbars</button>
 	</div>
