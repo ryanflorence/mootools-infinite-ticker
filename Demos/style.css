@@ -64,6 +64,7 @@ div.ticker p, ul.ticker li {
 	height: 50px;
 	padding: 0px;
 	margin: 0px;
+	margin-bottom: 10px !important;
 	font-size: 25px;
 	line-height: 50px;
 	color: #fff;

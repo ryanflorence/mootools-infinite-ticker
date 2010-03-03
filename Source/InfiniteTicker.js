@@ -29,12 +29,14 @@ var InfiniteTicker = new Class({
 			direction: 'down',
 			childSelector: false,
 			delay: 4000,
-			autostart: true
+			autostart: true,
+			fixMargin: true
 		},
 	
 	initialize: function(element, options){
 		this.parent(element, options);
 		this.cacheElements();
+		if(this.options.fixMargin) this.checkMargins();
 		this.moveElement();	
 		
 		this.setLoop(this.progress, this.options.delay);
@@ -56,14 +58,27 @@ var InfiniteTicker = new Class({
 		this.elements = els;
 		this.elementsSize = this.elements[0].getSize();
 		this.scrollSize = this.element.getScrollSize();
-		this.elementStyles = {
-			height: this.element.getStyle('height').toInt(),
-			width: this.element.getStyle('height').toInt()
-		};
-		this.scrollOffsets = {
-			y: ((this.elementStyles.height / this.elementsSize.y) + 1) * this.elementsSize.y,
-			x: ((this.elementStyles.x / this.elementsSize.x) + 1) * this.elementsSize.x
-		};
+		return this;
+	},
+	
+	checkMargins: function(){
+		this.elements.each(function(element){
+			var margins = element.getStyle('margin');
+			if (margins
+				 .split(' ')
+				 .map(function(item){return item.toInt();})
+				 .join(' ') != '0 0 0 0'
+			) {
+				element.setStyles({
+					'margin': 0
+				});
+				var nodes = $A(element.childNodes);
+				var el = new Element('div', { styles: { 'margin': margins }}).inject(element);
+				nodes.each(function(node){
+					el.appendChild(node)
+				});
+			}
+		}, this);
 		return this;
 	},
 	

@@ -23,11 +23,9 @@ window.addEvent('domready',function(){
 	
 	var tickerLeft = new InfiniteTicker('ticker_left',{
 		duration: 1000,
-		transition: 'quad:out',
 		direction: 'left',
 		transition: 'elastic:out'
 	});
-
 
 	// events inherited from Fx
 	
