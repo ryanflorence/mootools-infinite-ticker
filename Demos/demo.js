@@ -7,7 +7,7 @@ window.addEvent('domready',function(){
 		transition: 'quad:out',
 		direction: 'up'
 	});
-	
+
 	var tickerDown = new InfiniteTicker('ticker_down',{
 		duration: 1000,
 		transition: 'bounce:out',
@@ -17,7 +17,7 @@ window.addEvent('domready',function(){
 	var tickerRight = new InfiniteTicker('ticker_right',{
 		duration: 1000,
 		transition: 'quad:out',
-		direction: 'right',
+		direction: 'left',
 		childSelector: 'div.inner > p'
 	});
 	

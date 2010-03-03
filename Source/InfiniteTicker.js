@@ -30,28 +30,30 @@ var InfiniteTicker = new Class({
 			childSelector: false,
 			delay: 4000,
 			autostart: true,
-			fixMargin: true
+			autoCorrectSize: true
 		},
+	
+	pad: 0, // for borders and margin
 	
 	initialize: function(element, options){
 		this.parent(element, options);
 		this.cacheElements();
-		if(this.options.fixMargin) this.checkMargins();
-		this.moveElement();	
-		
-		this.setLoop(this.progress, this.options.delay);
-		this.checkAutoStart();
-		
+		if(this.options.autoCorrectSize) this.correct('margin');
 		this.toNext = this.progress; // bc
-		this.addEvent('onComplete',this.moveElement.bind(this));
+
+		this
+			.moveElement()
+			.setLoop(this.progress, this.options.delay)
+			.checkAutoStart()
+			.addEvent('onComplete', this.moveElement.bind(this));
 	},
 		
 	cacheElements: function(){
-		var cs = this.options.childSelector;
+		var cs = this.options.childSelector, els;
 		if(cs){
 			els = this.element.getElements(cs);
 		} else if (this.options.direction == 'left' || this.options.direction == 'right'){
-			els = this.element.getElements(':first-child > *');
+			els = this.element.getElement('*').getChildren();
 		} else {
 			els = this.element.getChildren();
 		}
@@ -61,24 +63,20 @@ var InfiniteTicker = new Class({
 		return this;
 	},
 	
-	checkMargins: function(){
-		this.elements.each(function(element){
-			var margins = element.getStyle('margin');
-			if (margins
-				 .split(' ')
-				 .map(function(item){return item.toInt();})
-				 .join(' ') != '0 0 0 0'
-			) {
-				element.setStyles({
-					'margin': 0
-				});
-				var nodes = $A(element.childNodes);
-				var el = new Element('div', { styles: { 'margin': margins }}).inject(element);
-				nodes.each(function(node){
-					el.appendChild(node)
-				});
-			}
-		}, this);
+	correct: function(prop){
+		var d = this.options.direction;
+		var props = this.elements[0]
+			.getStyle(prop)
+			.split(' ')
+			.map(function(item){return item.toInt();});
+		
+		if(props.join(' ') != '0 0 0 0'){
+			if(d == 'left' || d == 'right'){
+				this.pad += (props[1] == 0) ? props[3] : props[1];
+			} else {
+				this.pad += (props[0] == 0) ? props[2] : props[0];
+			};
+		};
 		return this;
 	},
 	
@@ -89,10 +87,10 @@ var InfiniteTicker = new Class({
 		
 	reverse: function(){
 		var r = {
-		    up: 'down',
-		    down: 'up',
-		    right: 'left',
-		    left: 'right'
+			up: 'down',
+			down: 'up',
+			right: 'left',
+			left: 'right'
 		};
 		this.options.direction = r[this.options.direction];
 		this.moveElement();
@@ -102,10 +100,10 @@ var InfiniteTicker = new Class({
 	progress: function(){
 		var scroll = this.element.getScroll();
 		switch(this.options.direction){
-			case 'down': this.start(0, scroll.y - this.elementsSize.y); break;
-			case 'up': this.start(0, scroll.y + this.elementsSize.y); break;
-			case 'right': this.start(scroll.x - this.elementsSize.x, 0); break;
-			case 'left': this.start(scroll.x + this.elementsSize.x, 0); break;
+			case 'down': this.start(0, scroll.y - this.elementsSize.y - this.pad); break;
+			case 'up': this.start(0, scroll.y + this.elementsSize.y + this.pad); break;
+			case 'right': this.start(scroll.x - this.elementsSize.x - this.pad, 0); break;
+			case 'left': this.start(scroll.x + this.elementsSize.x + this.pad, 0); break;
 		};
 	},
 	
